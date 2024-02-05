@@ -15,5 +15,5 @@ bot.onText(/\/echo (.+)/, (msg, match) => {
 bot.on('message', (msg) => {
   const chatId = msg.chat.id;
 
-  bot.sendMessage(chatId, 'Получили твое сообщение! Спасибо!');
+  bot.sendMessage(chatId, 'Скоро здесь будет бот по геншину');
 });
