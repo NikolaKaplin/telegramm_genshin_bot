@@ -22,19 +22,18 @@ bot.onText(/.*/, async (msg) => {
   const query = msg.text || "";
   const characters = await findCharactersByRussianName(query);
   if (query != "/list") {
-
-  if (characters.length > 1) {
-    const response = bot.sendMessage(msg.chat.id, "Возможно, вы имели ввиду:", {
-      reply_markup: {
-        inline_keyboard: characters.map(c => (
-          [
-            {text: c.name, url: c.page}
-          ]
-        ))
-      }
-    });
-  } else {
-    bot.sendMessage(msg.chat.id, `Найден персонаж: ${characters[0].name}`);
+    if (characters.length > 1) {
+      const response = bot.sendMessage(msg.chat.id, "Возможно, вы имели ввиду:", {
+        reply_markup: {
+          inline_keyboard: characters.map(c => (
+            [
+              {text: c.name, url: c.page}
+            ]
+          ))
+        }
+      });
+    } else {
+      bot.sendMessage(msg.chat.id, `Найден персонаж: ${characters[0].name}`);
+    }
   }
-}
 });
