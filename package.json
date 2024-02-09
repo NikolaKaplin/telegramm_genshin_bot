@@ -2,16 +2,20 @@
   "name": "telegramm_genshin_bot",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
-    "start": "node index.js"
-    "dev": "nodemon index.js",
+    "start": "bun run index.ts",
+    "dev": "nodemon index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cheerio": "^1.0.0-rc.12",
     "node-telegram-bot-api": "^0.64.0",
     "nodemon": "^3.0.3"
+  },
+  "devDependencies": {
+    "@types/node-telegram-bot-api": "^0.64.2"
   }
 }
