@@ -12,8 +12,10 @@
   "license": "ISC",
   "dependencies": {
     "cheerio": "^1.0.0-rc.12",
+    "fuse.js": "^7.0.0",
     "node-telegram-bot-api": "^0.64.0",
-    "nodemon": "^3.0.3"
+    "nodemon": "^3.0.3",
+    "ts-node": "^10.9.2"
   },
   "devDependencies": {
     "@types/node-telegram-bot-api": "^0.64.2"

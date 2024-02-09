@@ -1,18 +1,38 @@
 import TelegramBot from 'node-telegram-bot-api';
-import { default as listCharacters } from './parsers/listCharacters';
+import { findCharactersByRussianName, getCharacters } from './types/Character';
 
 const token = '6687835699:AAH-BxxK8JmN6upta6VSmPNPC2xQjfpTbMA';
 
+getCharacters();
 const bot = new TelegramBot(token, {polling: true});
 
 bot.onText(/\/list/, async (msg) => {
-  const characters = await listCharacters();
+  const characters = await getCharacters();
 
-  bot.sendMessage(msg.chat.id, "Список персонажей:\n" + characters.join(", "));
+  bot.sendMessage(msg.chat.id, "Список персонажей:\n" + characters.map(c => c.name).join(", "));
 })
 
-bot.on('message', (msg) => {
+bot.onText(/\/start/, (msg) => {
   const chatId = msg.chat.id;
 
-  bot.sendMessage(chatId, 'Скоро здесь будет бот по геншину');
+  bot.sendMessage(chatId, "Привет, я готов тебе помочь");
+});
+
+bot.onText(/.*/, async (msg) => {
+  const query = msg.text || "";
+  const characters = await findCharactersByRussianName(query);
+
+  if (characters.length > 1) {
+    const response = bot.sendMessage(msg.chat.id, "Возможно, вы имели ввиду:", {
+      reply_markup: {
+        inline_keyboard: characters.map(c => (
+          [
+            {text: c.name, url: c.page}
+          ]
+        ))
+      }
+    });
+  } else {
+    bot.sendMessage(msg.chat.id, `Найден персонаж: ${characters[0].name}`);
+  }
 });
