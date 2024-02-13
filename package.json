@@ -11,12 +11,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@t3-oss/env-core": "^0.9.2",
     "cheerio": "^1.0.0-rc.12",
     "fuse.js": "^7.0.0",
     "node-telegram-bot-api": "^0.64.0",
     "nodemon": "^3.0.3",
     "ts-node": "^10.9.2",
-    "wrappy": "^1.0.2"
+    "wrappy": "^1.0.2",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@types/node-telegram-bot-api": "^0.64.2",

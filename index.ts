@@ -1,7 +1,7 @@
 import TelegramBot from "node-telegram-bot-api";
 import { findCharactersByRussianName, getCharacters } from "./types/Character";
 
-const token = "6687835699:AAH-BxxK8JmN6upta6VSmPNPC2xQjfpTbMA";
+const token = process.env.TOKEN as string;
 
 getCharacters();
 const bot = new TelegramBot(token, { polling: true });
