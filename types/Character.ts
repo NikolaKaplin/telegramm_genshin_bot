@@ -46,7 +46,7 @@ export async function findCharactersByRussianName (query: string, limit: number 
     });
     let results = fuse.search(query).map(c => c.item).filter((v, i) => i < limit);
 
-    if (results[0].name.toLowerCase() == query.toLowerCase()) results = results.filter((r, i) => i == 0);
+    if (results[0]&&results[0].name.toLowerCase() == query.toLowerCase()) results = results.filter((r, i) => i == 0);
 
     return results;
 }

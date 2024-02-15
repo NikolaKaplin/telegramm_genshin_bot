@@ -30,7 +30,7 @@ bot.onText(/^((?!\/).)*$/, async (msg) => {
         inline_keyboard: characters.map((c) => [{ text: c.name, url: c.page }]),
       },
     });
-  } else {
+  } else if (characters[0]) {
     bot.sendMessage(msg.chat.id, `Найден персонаж: ${characters[0].name}`);
   }
 });
