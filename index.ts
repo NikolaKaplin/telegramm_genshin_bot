@@ -31,6 +31,10 @@ bot.onText(/^((?!\/).)*$/, async (msg) => {
       },
     });
   } else if (characters[0]) {
-    bot.sendMessage(msg.chat.id, `Найден персонаж: ${characters[0].name}`);
+    bot.sendMessage(msg.chat.id, `Найден персонаж: ${characters[0].name}`,{
+      reply_markup: {
+        inline_keyboard: characters.map((c) => [{ text: c.name, url: c.page }]),
+      },
+    } );
   }
 });
