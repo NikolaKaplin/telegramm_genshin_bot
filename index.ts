@@ -20,9 +20,10 @@ bot.onText(/\/start/, (msg) => {
 
   bot.sendMessage(chatId, "Привет, я готов тебе помочь");
 });
-
+    
 bot.onText(/^((?!\/).)*$/, async (msg) => {
-  const query = msg.text || "";
+  let query = msg.text?.toLowerCase() || "";
+  if (query.match(/.*чич(а|и).*/)) query = "цици";
   const characters = await findCharactersByRussianName(query);
   if (characters.length > 1) {
     const response = bot.sendMessage(msg.chat.id, "Возможно, вы имели ввиду:", {
