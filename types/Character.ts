@@ -12,6 +12,17 @@ type Character = {
 }
 export default Character;
 
+getCharacterInformation('qiqi')
+
+
+export async function getCharacterInformation (character: string)  {
+    const buffer = await fetch(charactersListUrl + character).then((res) =>res.arrayBuffer());
+    const $ = cheerio.load(new TextDecoder().decode(buffer));
+
+    const $card = $('.card > a[title!=""]');
+    console.log($card.html())
+};
+
 export async function getCharacters (): Promise<Character[]> {
     const res = await fetch(charactersListUrl);
     const page = cheerio.load(await res.text())("body");
